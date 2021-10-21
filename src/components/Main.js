@@ -31,13 +31,8 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
 
     useEffect(() => {
         api.getCards()
-        .then(cards => setCards(cards))
-           
+        .then(cards => setCards(cards))           
     }, [])
-    
-
-
-
 
     return (
         <main>
@@ -62,20 +57,13 @@ function Main({onEditProfile, onAddPlace, onEditAvatar}) {
               
             <section className="elements">
                 <ul className="elements__list">
-                    <template className="elements__list-template">
-
-                        {cards.map(({ link, name, likes }) => {
-                            console.log(cards)
-
-                            return <Cards
-                                url={link}
-                                text={name}
-                                likeCount={likes.length}
-                            />
-                        })}
-                        
-                                                
-                    </template>
+                    {cards.map(({ link, name, likes }) => {
+                        return <Cards
+                            url={link}
+                            text={name}
+                            likeCount={likes.length}
+                        />
+                    })}
                 </ul>                
             </section>
 
