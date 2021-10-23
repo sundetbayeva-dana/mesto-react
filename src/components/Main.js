@@ -59,14 +59,13 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
             <section className="elements">
                 <ul className="elements__list">
                     {cards.map(({ link, name, likes, _id }) => {
-                        return <div key={_id}>
-                            <Card
+                        return <Card
+                            key={_id}
                             url={link}
                             text={name}
                             likeCount={likes.length}
                             onCardClick={onCardClick}                            
-                        />
-                        </div>     
+                        />                        
                     })}
                 </ul>                
             </section>
