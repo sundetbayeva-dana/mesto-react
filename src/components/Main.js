@@ -55,20 +55,22 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                 <button aria-label="Кнопка добавить" className="button button_type_add" type="button" onClick={onAddPlace}>
                 </button>
             </section>
-              
+
             <section className="elements">
                 <ul className="elements__list">
-                    {cards.map(({ link, name, likes }) => {
-                        return <Card
+                    {cards.map(({ link, name, likes, _id }) => {
+                        return <div key={_id}>
+                            <Card
                             url={link}
                             text={name}
                             likeCount={likes.length}
                             onCardClick={onCardClick}                            
-                        />                        
+                        />
+                        </div>     
                     })}
                 </ul>                
-            </section>            
-
+            </section>
+            
             <div className="popup popup-confirm-delete">
                 <div className="popup__overlay"></div>
                 <div className="popup__content">
@@ -78,16 +80,6 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
                     <button className="button button_type_submit" type="submit" name="confirm-delete">
                         Да
                     </button>
-                </div>
-            </div>
-              
-            <div className="popup popup-card">
-                <div className="popup__overlay"></div>
-                <div className="popup-card__content">
-                    <button aria-label="Кнопка закрыть" className="button button_type_close" type="button">
-                    </button>
-                    <img className="popup-card__pic" alt="#" src="#" />
-                    <p className="popup-card__picname"></p>
                 </div>
             </div>
               
