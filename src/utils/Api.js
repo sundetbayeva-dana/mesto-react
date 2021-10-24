@@ -19,9 +19,6 @@ class Api {
       }     
     })
     .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })
   }
 
   getUserInformation() {
@@ -31,10 +28,7 @@ class Api {
         authorization: this._authorization,
       }
     })
-    .then(this._handleResponse)    
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._handleResponse)
   }
 
   setUserAvatar(data) {

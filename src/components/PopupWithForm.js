@@ -1,6 +1,6 @@
 import React from 'react';
 
-function PopupWithForm({name, title, children, isOpen, onClose}) {
+function PopupWithForm({name, title, children, isOpen, onClose, buttonText}) {
     const popupOpened=`${isOpen && 'element_visible'}`
     return (
         <div className={`popup popup-${name} ${popupOpened}`}>            
@@ -13,7 +13,7 @@ function PopupWithForm({name, title, children, isOpen, onClose}) {
                 <form className="popup__form" name={`${name}`}>                    
                     {children}
                     <button className="button button_type_save" type="submit" name="" >
-                    Сохранить
+                    {buttonText}
                     </button>
                 </form>
             </div>

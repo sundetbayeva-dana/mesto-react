@@ -5,25 +5,19 @@ import Card from './Card';
 
 
 function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
-    const [userName, setUserName] = React.useState([]);    
-    const [userDescription, setUserDescription] = React.useState([]);
-    const [userAvatar, setUserAvatar] = React.useState([])
+    const [userName, setUserName] = React.useState('');    
+    const [userDescription, setUserDescription] = React.useState('');
+    const [userAvatar, setUserAvatar] = React.useState('')
 
     useEffect(() => {
         api.getUserInformation()
         .then(({name, about, avatar}) => {
-            setUserName([
-                ...userName,
-                name
-            ])
-            setUserDescription([
-                ...userDescription,
-                about
-            ])
-            setUserAvatar([
-                ...userAvatar,
-                avatar
-            ])
+            setUserName(name)
+            setUserDescription(about)
+            setUserAvatar(avatar)
+        })
+        .catch((err) => {
+            console.log(err)
         })
     }, [])
 
@@ -32,7 +26,10 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
 
     useEffect(() => {
         api.getCards()
-        .then(cards => setCards(cards))           
+        .then(cards => setCards(cards))
+        .catch((err) => {
+            console.log(err)
+        })       
     }, [])
 
     return (
@@ -59,29 +56,19 @@ function Main({onEditProfile, onAddPlace, onEditAvatar, onCardClick}) {
             <section className="elements">
                 <ul className="elements__list">
                     {cards.map(({ link, name, likes, _id }) => {
-                        return <Card
+                        return (
+                            <Card
                             key={_id}
                             url={link}
                             text={name}
                             likeCount={likes.length}
                             onCardClick={onCardClick}                            
-                        />                        
+                            />
+                        )                   
                     })}
                 </ul>                
             </section>
-            
-            <div className="popup popup-confirm-delete">
-                <div className="popup__overlay"></div>
-                <div className="popup__content">
-                    <button aria-label="Кнопка закрыть" className="button button_type_close" type="button">
-                    </button>
-                    <h2 className="popup__title">Вы уверены?</h2>
-                    <button className="button button_type_submit" type="submit" name="confirm-delete">
-                        Да
-                    </button>
-                </div>
-            </div>
-              
+
         </main>
     )
 }
