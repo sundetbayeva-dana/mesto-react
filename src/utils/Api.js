@@ -39,13 +39,10 @@ class Api {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        avatar: data.link
+        avatar: data.avatar
       }) 
     })
-    .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._handleResponse)    
   }
  
   setUserInfo(data) {
@@ -60,10 +57,7 @@ class Api {
         about: data.about,  
       })      
     })
-    .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })  
+    .then(this._handleResponse)     
   }
 
   setLikeOnCard(id) {
@@ -73,10 +67,7 @@ class Api {
         authorization: this._authorization,
       }
     })
-    .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._handleResponse)    
   }
 
   removeLikeOnCard(id) {
@@ -86,10 +77,7 @@ class Api {
         authorization: this._authorization,
       }
     })
-    .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._handleResponse)    
   }  
 
   addCards(text, link) {
@@ -103,24 +91,18 @@ class Api {
         name: text,
         link: link})  
     })
-    .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._handleResponse)    
   }
 
-  deleteCard(data) {
-    return fetch(`${this._url}/cards/${data._id}`, {
+  deleteCard(id) {
+    return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
       headers: {
         authorization: this._authorization,
         'Content-Type': 'application/json'
       }
     })
-    .then(this._handleResponse)
-    .catch((err) => {
-      console.log(err)
-    })
+    .then(this._handleResponse)    
   }
 }
 
@@ -130,4 +112,3 @@ const api = new Api({
 })
 
 export default api;
-
