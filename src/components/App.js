@@ -62,19 +62,25 @@ function App() {
     function handleUpdateUser(userInfo) { 
         api.setUserInfo(userInfo)
         .then(currentUser => setCurrentUser(currentUser))
+        .then(() => {
+            closeAllPopups()
+        })
         .catch((err) => {
             console.log(err)
         }) 
-        closeAllPopups()
+        
     }
 
     function handleUpdateAvatar(avatar) {
         api.setUserAvatar(avatar)
         .then(currentUser => setCurrentUser(currentUser))
+        .then(() => {
+            closeAllPopups()
+        })
         .catch((err) => {
             console.log(err)
         })
-        closeAllPopups()
+        
     }
 
     function handleCardLike({likes, cardId}) {
@@ -112,10 +118,13 @@ function App() {
     function handleAddPlaceSubmit({text, link}) {
         api.addCards(text, link)
         .then((newCard) => setCards([newCard, ...cards]))
+        .then(() => {
+            closeAllPopups()
+        })
         .catch((err) => {
             console.log(err)
         })
-        closeAllPopups()
+        
     }
 
     return (
